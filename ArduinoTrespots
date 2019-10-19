@@ -1,0 +1,28 @@
+int valor_potenciometro = 0;
+int valor_potenciometro2= 0;
+int valor_potenciometro3= 0;
+int led = 13;
+void setup(){
+  Serial.begin(9600);
+  pinMode(led, OUTPUT);
+}
+
+void loop(){
+  valor_potenciometro = analogRead(A0);
+  valor_potenciometro2= analogRead(A1);
+  valor_potenciometro3= analogRead(A2);
+  Serial.print(valor_potenciometro);
+  Serial.print(',');
+  Serial.print(valor_potenciometro2);
+  Serial.print(',');
+  Serial.println(valor_potenciometro3);
+  delay(100);
+  while (Serial.available() == 0);
+  char val = Serial.read();
+  if (val == '1'){
+  digitalWrite(led,HIGH);
+  }
+  else if (val == '0'){
+  digitalWrite(led,LOW);
+  }
+}
